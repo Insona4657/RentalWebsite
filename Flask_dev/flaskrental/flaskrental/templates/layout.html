@@ -1,0 +1,70 @@
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type = "text/css" href="{{ url_for('static', filename='main.css')}}">
+
+    <title>Rent Medical Equipment</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+  <body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+          <div class="container">
+            <a class="navbar-brand mr-4" href="/">Hospital Bed Rental</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarToggle">
+              <div class="navbar-nav mr-auto">
+                <a class="nav-item nav-link" href="{{ url_for('home')}}">Home</a>
+                <a class="nav-item nav-link" href="{{ url_for('contact')}}">Contact Us</a>
+              </div>
+                <div class="StylableButton2545352419__container"><span class="StylableButton2545352419__label wixui-button__label" data-testid="stylablebutton-label">Whatsapp Now</span><span class="StylableButton2545352419__icon wixui-button__icon" aria-hidden="true" data-testid="stylablebutton-icon"><div><!--?xml version="1.0" encoding="UTF-8"?-->
+                <svg data-bbox="106.332 106.332 596.613 596.672" viewBox="0 0 810 810" height="30" width="30" xmlns="http://www.w3.org/2000/svg" data-type="shape">
+                    <g>
+                        <defs>
+                            <clipPath id="48733500-4383-46ad-8060-382775114be0">
+                                <path d="M106.332 106.332H703v596.672H106.332zm0 0"></path>
+                            </clipPath>
+                        </defs>
+                        <g clip-path="url(#48733500-4383-46ad-8060-382775114be0)">
+                            <path d="M405.016 106.332c-164.262 0-297.985 133.606-298.043 297.871-.032 52.504 13.722 103.766 39.797 148.934l-40.438 149.867 156.102-36.883c43.527 23.746 92.527 36.211 142.41 36.242h.117c164.23 0 297.894-133.636 297.984-297.87.059-79.626-30.902-154.49-87.168-210.817-56.27-56.297-131.043-87.313-210.761-87.344zM404.96 166c63.723.027 123.61 24.875 168.629 69.863 45.02 45.047 69.75 104.907 69.687 168.57-.058 131.387-106.93 238.262-238.375 238.262-39.77-.03-79.164-10.015-113.859-28.96l-20.102-10.954-22.199 5.246-58.738 13.868 14.336-53.258 6.469-23.89-12.356-21.442c-20.824-36.04-31.844-77.246-31.812-119.102C166.699 272.875 273.6 166 404.96 166zM299.55 266.688c-4.98 0-13.04 1.863-19.871 9.324-6.832 7.425-26.102 25.418-26.102 62.054 0 36.637 26.688 72.051 30.414 77.032 3.7 4.953 51.516 82.507 127.203 112.343 62.887 24.79 75.66 19.899 89.325 18.645 13.664-1.223 44.082-17.977 50.285-35.367 6.207-17.395 6.222-32.356 4.37-35.43-1.847-3.101-6.816-4.953-14.277-8.68-7.425-3.73-44.035-21.707-50.867-24.183-6.832-2.477-11.828-3.73-16.781 3.73-4.953 7.457-19.184 24.18-23.54 29.133-4.355 4.984-8.683 5.652-16.14 1.922-7.46-3.758-31.441-11.64-59.902-37-22.137-19.719-37.074-44.05-41.43-51.508-4.324-7.43-.406-11.512 3.325-15.21 3.34-3.34 7.398-8.696 11.128-13.052 3.7-4.355 4.98-7.457 7.457-12.41 2.477-4.953 1.211-9.324-.64-13.054-1.852-3.727-16.336-40.5-22.957-55.239-5.578-12.379-11.473-12.668-16.781-12.875-4.329-.18-9.266-.175-14.22-.175zm0 0"></path>
+                        </g>
+                    </g>
+                </svg>
+                </div></span></div>
+              <!-- Navbar Right Side -->
+              <div class="navbar-nav">
+                {% if current_user.is_authenticated %}
+                <a class="nav-item nav-link" href="{{ url_for('account')}}">Account</a>
+                <a class="nav-item nav-link" href="{{ url_for('logout')}}">Logout</a>
+                {% else %}
+                <a class="nav-item nav-link" href="{{ url_for('login')}}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('register')}}">Register</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+    {%  with messages = get_flashed_messages(with_categories=true)  %}
+      {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+          {{ message }}
+        </div>
+        {% endfor %}
+      {% endif %}
+    {%  endwith  %}
+
+    {% block content %}
+
+    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
