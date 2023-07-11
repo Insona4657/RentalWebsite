@@ -19,8 +19,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
               <div class="navbar-nav mr-auto">
-                <a class="nav-item nav-link" href="{{ url_for('home')}}">Home</a>
-                <a class="nav-item nav-link" href="{{ url_for('contact')}}">Contact Us</a>
+                <a class="nav-item nav-link" href="{{ url_for('main.home')}}">Home</a>
+                <a class="nav-item nav-link" href="{{ url_for('main.contact')}}">Contact Us</a>
               </div>
                 <div class="StylableButton2545352419__container"><span class="StylableButton2545352419__label wixui-button__label" data-testid="stylablebutton-label">Whatsapp Now</span><span class="StylableButton2545352419__icon wixui-button__icon" aria-hidden="true" data-testid="stylablebutton-icon"><div><!--?xml version="1.0" encoding="UTF-8"?-->
                 <svg data-bbox="106.332 106.332 596.613 596.672" viewBox="0 0 810 810" height="30" width="30" xmlns="http://www.w3.org/2000/svg" data-type="shape">
@@ -39,11 +39,11 @@
               <!-- Navbar Right Side -->
               <div class="navbar-nav">
                 {% if current_user.is_authenticated %}
-                <a class="nav-item nav-link" href="{{ url_for('account')}}">Account</a>
-                <a class="nav-item nav-link" href="{{ url_for('logout')}}">Logout</a>
+                <a class="nav-item nav-link" href="{{ url_for('rentalusers.account')}}">Account</a>
+                <a class="nav-item nav-link" href="{{ url_for('rentalusers.logout')}}">Logout</a>
                 {% else %}
-                <a class="nav-item nav-link" href="{{ url_for('login')}}">Login</a>
-                <a class="nav-item nav-link" href="{{ url_for('register')}}">Register</a>
+                <a class="nav-item nav-link" href="{{ url_for('rentalusers.login')}}">Login</a>
+                <a class="nav-item nav-link" href="{{ url_for('rentalusers.register')}}">Register</a>
                 {% endif %}
               </div>
             </div>

@@ -1,4 +1,5 @@
-from flaskrental import db, login_manager, app
+from flaskrental import db, login_manager, create_app
+from flask import current_app
 from flask_login import UserMixin
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 #from itsdangerous.url_safe import URLSafeTimedSerializer as Serializer
@@ -14,12 +15,12 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
 
     def get_reset_token(self, expires_sec=1800):
-        s = Serializer(app.config['SECRET_KEY'], expires_sec)
+        s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
         return s.dumps({'user_id': self.id}).decode('utf-8')
     
     @staticmethod
     def verify_reset_token(token):
-        s = Serializer(app.config['SECRET_KEY'])
+        s = Serializer(current_app.config['SECRET_KEY'])
         try:
             user_id = s.loads(token)['user_id']
         except:
@@ -40,5 +41,4 @@ class Product(db.Model):
     def __repr__(self):
         return f"Product('{self.title}', '{self.description}', '{self.image_file}')"
 """    
-with app.app_context():
-    db.create_all()
+

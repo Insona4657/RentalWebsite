@@ -4,23 +4,37 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_mail import Mail
+from flaskrental.config import Config
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = '7b083c0fa0ac180c6b8244e6923ba179'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-db = SQLAlchemy(app)
-bcrypt = Bcrypt(app)
-login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+
+db = SQLAlchemy()
+bcrypt = Bcrypt()
+login_manager = LoginManager()
+login_manager.login_view = 'users.login'
 login_manager.login_message_category = 'info'
-app.config['MAIL_SERVER'] = 'smtp.office365.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = 'soorn4657@hotmail.com'
-app.config['MAIL_PASSWORD'] = 'zjmxujxotsfwdgec'
-mail = Mail(app)
 
-from flaskrental import routes
+mail = Mail()
 
 
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    app.config.from_object(Config)
+
+    db.init_app(app)
+    bcrypt.init_app(app)
+    login_manager.init_app(app)
+    mail.init_app(app)
+
+    from flaskrental.rentalusers.routes import rentalusers
+    from flaskrental.products.routes import products
+    from flaskrental.main.routes import main
+    from flaskrental.errors.handlers import errors
+    app.register_blueprint(rentalusers)
+    app.register_blueprint(products)
+    app.register_blueprint(main)
+    app.register_blueprint(errors)
+    
+    with app.app_context():
+        db.create_all()
+
+    return(app)
