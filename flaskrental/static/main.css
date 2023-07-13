@@ -1,9 +1,23 @@
+html {
+  height: -webkit-fill-available;
+}
 body {
     background: #fafafa;
     color: #333333;
     margin-top: 5rem;
+    display: flex;
+    flex-direction: column;
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 100vh;
+    height: -webkit-fill-available;
+    border: 1px solid #dddddd;
+    border-radius: 3px;
+    border-bottom: #ffffff;
   }
-  
+  main {
+    flex: 1;
+  }
   h1, h2, h3, h4, h5, h6 {
     color: #444444;
   }
@@ -14,14 +28,36 @@ body {
   
   .site-header .navbar-nav .nav-link {
     color: #cbd5db;
+    margin-left: 10px;
+    font-weight: 500;
+    color: #ffffff;
   }
   
   .site-header .navbar-nav .nav-link:hover {
+    color: #ffffff;
+    font-weight: 500;
     color: #ffffff;
   }
   
   .site-header .navbar-nav .nav-link.active {
     font-weight: 500;
+
+    color: #ffffff;
+  }
+
+  .nav-link-right {
+    color: #cbd5db;
+    margin-left: 20px;
+    margin-right: 150px;
+    font-weight: 500;
+    color: #ffffff;
+  }
+
+  .nav-link-left {
+    color: #cbd5db;
+    margin-left: 10px;
+    font-weight: 500;
+    color: #ffffff;
   }
   
   .content-section {
@@ -77,4 +113,62 @@ body {
   
   .account-heading {
     font-size: 2.5rem;
+  }
+
+  .btnWhatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #fff;
+  text-decoration: none!important;
+  background-color: #428bca;
+  border-radius: 25px;
+  padding: 5px 10px 5px 20px;
+  transition: all .5s;
+  margin-left: 10px;
+  }
+
+  .img-fluid-header {
+    margin-left: 10px;
+    width: 35px;
+  }
+
+  .logo {
+    border-radius: 25px;
+    border: 2px solid #73AD21;
+    width: 150px;
+    height: 65px;
+  }
+
+  .img-fluid {
+    max-width: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    height: 40px;
+    width: 80px;
+  }
+  
+  .site-footer {
+    font-weight: 500;
+    border-radius: 25px;
+
+  }
+
+  .bgManually_footer_top {
+    border-top: 15px solid #303030;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .secManually_footer_top_left_logo_imgx {
+    margin-bottom: 15px;
   }
